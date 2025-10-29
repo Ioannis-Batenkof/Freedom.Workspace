@@ -7,8 +7,8 @@ namespace Freedom.Workspace
     {
         static void Main()
         {
-            int sensor1Pin = 8;   // black wire of sensor 1
-            int sensor2Pin = 1;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
+            int sensor1Pin = 24;   // black wire of sensor 1
+            int sensor2Pin = 28;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
 
             using var controller = new GpioController();
 
