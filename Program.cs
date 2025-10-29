@@ -1,22 +1,29 @@
-﻿namespace Freedom.Workspace
+﻿using System.Device.Gpio;
+using System.Threading;
+
+namespace Freedom.Workspace
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            User user = new User();
-            user.Name = "Test";
-            user.Password = "password";
+            int sensor1Pin = 8;   // black wire of sensor 1
+            int sensor2Pin = 1;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
 
-            (User UserInfo, FailedToCreateUserReasons status) result = (user, Validate.User(user));
+            using var controller = new GpioController();
 
-            if (result.status == FailedToCreateUserReasons.Success)
+            controller.OpenPin(sensor1Pin, PinMode.Input);
+            controller.OpenPin(sensor2Pin, PinMode.Input);
+
+            Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
+
+            while (true)
             {
-                Console.WriteLine("Success");
-            }
-            else
-            {
-                Console.WriteLine("Smth went wrong");
+                bool s1 = controller.Read(sensor1Pin) == PinValue.High;
+                bool s2 = controller.Read(sensor2Pin) == PinValue.High;
+
+                Console.WriteLine($"Sensor1: {s1}, Sensor2: {s2}");
+                Thread.Sleep(300);
             }
         }
     }
