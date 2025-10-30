@@ -1,30 +1,26 @@
-﻿using System.Device.Gpio;
+﻿using System;
+using System.Device.Gpio;
 using System.Threading;
 
-namespace Freedom.Workspace
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main()
+        int sensor1Pin = 17; // BCM numbering
+        int sensor2Pin = 27;
+
+        using var gpio = new GpioController(PinNumberingScheme.Logical);
+        gpio.OpenPin(sensor1Pin, PinMode.InputPullUp);
+        gpio.OpenPin(sensor2Pin, PinMode.InputPullUp);
+
+        Console.WriteLine("Watching sensors... Press Ctrl+C to stop.");
+
+        while (true)
         {
-            int sensor1Pin = 24;   // black wire of sensor 1
-            int sensor2Pin = 28;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
-
-            using var controller = new GpioController();
-
-            controller.OpenPin(sensor1Pin, PinMode.Input);
-            controller.OpenPin(sensor2Pin, PinMode.Input);
-
-            Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
-
-            while (true)
-            {
-                bool s1 = controller.Read(sensor1Pin) == PinValue.High;
-                bool s2 = controller.Read(sensor2Pin) == PinValue.High;
-
-                Console.WriteLine($"Sensor1: {s1}, Sensor2: {s2}");
-                Thread.Sleep(300);
-            }
+            bool s1 = gpio.Read(sensor1Pin) == PinValue.High;
+            bool s2 = gpio.Read(sensor2Pin) == PinValue.High;
+            Console.WriteLine($"S1: {s1}   S2: {s2}");
+            Thread.Sleep(300);
         }
     }
 }
