@@ -9,7 +9,7 @@ class Program
         int sensor1Pin = 22; // physical pin 15
         int sensor2Pin = 26; // physical pin 37
 
-        const int Pin = 22;
+        const int Pin = 13;
         const string Alert = "ALERT 🚨";
         const string Ready = "READY ✅";
 
