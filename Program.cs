@@ -6,8 +6,8 @@ class Program
 {
     static void Main()
     {
-        int s1Pin = 22; // BCM22 physical pin 15
-        int s2Pin = 26; // BCM26 physical pin 37
+        int s1Pin = 15; // BCM22 physical pin 15
+        int s2Pin = 37; // BCM26 physical pin 37
 
         using var gpio = new GpioController(PinNumberingScheme.Logical);
 
