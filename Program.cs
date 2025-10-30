@@ -6,8 +6,8 @@ class Program
 {
     static void Main()
     {
-        int sensor1Pin = 17; // BCM numbering
-        int sensor2Pin = 27;
+        int sensor1Pin = 24; // BCM numbering
+        int sensor2Pin = 28;
 
         using var gpio = new GpioController(PinNumberingScheme.Logical);
         gpio.OpenPin(sensor1Pin, PinMode.InputPullUp);
