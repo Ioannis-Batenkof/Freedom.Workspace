@@ -10,8 +10,8 @@ class Program
         int sensor2Pin = 28;
 
         using var gpio = new GpioController(PinNumberingScheme.Logical);
-        gpio.OpenPin(sensor1Pin, PinMode.InputPullUp);
-        gpio.OpenPin(sensor2Pin, PinMode.InputPullUp);
+        gpio.OpenPin(sensor1Pin, PinMode.Input);
+        gpio.OpenPin(sensor2Pin, PinMode.Input);
 
         Console.WriteLine("Watching sensors... Press Ctrl+C to stop.");
 
