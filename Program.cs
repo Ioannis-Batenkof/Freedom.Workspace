@@ -33,6 +33,8 @@ class Program
                 $"({DateTime.Now}) {(args.ChangeType is PinEventTypes.Rising ? "Low on 2" : "High on 2")}");
         }
 
+        Task.Delay(Timeout.Infinite);
+
         while (true)
         {
             bool s1 = gpio.Read(sensor1Pin) == PinValue.High;
