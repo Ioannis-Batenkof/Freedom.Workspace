@@ -15,8 +15,8 @@ namespace Freedom.Workspace
             using var controller = new GpioController(PinNumberingScheme.Logical, new LibGpiodDriver(4));
 
             // Enable pull-ups
-            controller.OpenPin(sensor1Pin, PinMode.InputPullUp);
-            controller.OpenPin(sensor2Pin, PinMode.InputPullUp);
+            controller.OpenPin(sensor1Pin, PinMode.Output);
+            controller.OpenPin(sensor2Pin, PinMode.Output);
 
             Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
 
