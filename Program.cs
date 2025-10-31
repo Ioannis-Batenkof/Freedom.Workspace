@@ -11,7 +11,7 @@ namespace Freedom.Workspace
             int sensor1Pin = 22;   // black wire of sensor 1
             int sensor2Pin = 26;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
 
-            var driver = new LibGpiodDriver(4);
+            var driver = new LibGpiodDriver();
             using var controller = new GpioController(driver);
 
             controller.OpenPin(sensor1Pin, PinMode.Input);
