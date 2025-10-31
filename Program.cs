@@ -9,8 +9,8 @@ namespace Freedom.Workspace
     {
         static void Main()
         {
-            int sensor1Pin = 22; // channel 1 output from 817 module
-            int sensor2Pin = 26; // channel 2 output from 817 module
+            int sensor1Pin = 17; // channel 1 output from 817 module
+            int sensor2Pin = 1; // channel 2 output from 817 module
 
             using var controller = new GpioController(PinNumberingScheme.Logical, new LibGpiodDriver(4));
 
