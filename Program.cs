@@ -19,8 +19,8 @@ namespace Freedom.Workspace
 
             while (true)
             {
-                bool s1 = controller.Read(sensor1Pin) == PinValue.High;
-                bool s2 = controller.Read(sensor2Pin) == PinValue.High;
+                var s1 = controller.Read(sensor1Pin);
+                var s2 = controller.Read(sensor2Pin);
 
                 Console.WriteLine($"Sensor1: {s1}, Sensor2: {s2}");
                 Thread.Sleep(300);
