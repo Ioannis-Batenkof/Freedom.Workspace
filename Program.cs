@@ -14,8 +14,8 @@ namespace Freedom.Workspace
             var driver = new LibGpiodDriver(4);
             using var controller = new GpioController(driver);
 
-            controller.OpenPin(sensor1Pin, PinMode.Output);
-            controller.OpenPin(sensor2Pin, PinMode.Output);
+            controller.OpenPin(sensor1Pin, PinMode.InputPullUp);
+            controller.OpenPin(sensor2Pin, PinMode.InputPullUp);
 
             Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
 
