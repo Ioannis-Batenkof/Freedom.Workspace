@@ -12,8 +12,8 @@ namespace Freedom.Workspace
 
             using var controller = new GpioController();
 
-            controller.OpenPin(sensor1Pin, PinMode.Input);
-            controller.OpenPin(sensor2Pin, PinMode.Input);
+            controller.OpenPin(sensor1Pin, PinMode.InputPullDown);
+            controller.OpenPin(sensor2Pin, PinMode.InputPullUp);
 
             Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
 
