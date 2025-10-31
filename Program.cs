@@ -1,4 +1,5 @@
-﻿using System.Device.Gpio;
+﻿using System;
+using System.Device.Gpio;
 using System.Device.Gpio.Drivers;
 using System.Threading;
 
@@ -8,12 +9,12 @@ namespace Freedom.Workspace
     {
         static void Main()
         {
-            int sensor1Pin = 22;   // black wire of sensor 1
-            int sensor2Pin = 26;   // black wire of sensor 2 (OK, but consider changing to 17 or 27 later)
+            int sensor1Pin = 22; // channel 1 output from 817 module
+            int sensor2Pin = 26; // channel 2 output from 817 module
 
-            var driver = new LibGpiodDriver(4);
-            using var controller = new GpioController(driver);
+            using var controller = new GpioController(PinNumberingScheme.Logical, new LibGpiodDriver(4));
 
+            // Enable pull-ups
             controller.OpenPin(sensor1Pin, PinMode.InputPullUp);
             controller.OpenPin(sensor2Pin, PinMode.InputPullUp);
 
@@ -21,10 +22,10 @@ namespace Freedom.Workspace
 
             while (true)
             {
-                var s1 = controller.Read(sensor1Pin);
-                var s2 = controller.Read(sensor2Pin);
+                bool sensor1Active = controller.Read(sensor1Pin) == PinValue.Low; // LOW = active
+                bool sensor2Active = controller.Read(sensor2Pin) == PinValue.Low;
 
-                Console.WriteLine($"Sensor1: {s1}, Sensor2: {s2}");
+                Console.WriteLine($"Sensor1: {sensor1Active}, Sensor2: {sensor2Active}");
                 Thread.Sleep(300);
             }
         }
