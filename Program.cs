@@ -12,7 +12,7 @@ namespace Freedom.Workspace
             int sensor1Pin = 22; // channel 1 output from 817 module
             int sensor2Pin = 24; // channel 2 output from 817 module
 
-            using var controller = new GpioController(PinNumberingScheme.Logical, new LibGpiodDriver(4));
+            using var controller = new GpioController(new LibGpiodDriver(4));
 
             // Enable pull-ups
             controller.OpenPin(sensor1Pin, PinMode.InputPullUp);
