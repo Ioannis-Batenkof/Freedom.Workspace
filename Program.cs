@@ -35,7 +35,7 @@ class Program
             }
             else
             {
-                Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
+                //Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
             }
 
             //if (value2 == PinValue.Low)
