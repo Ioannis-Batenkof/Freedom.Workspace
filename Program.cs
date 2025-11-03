@@ -29,7 +29,7 @@ class Program
             //PinValue value2 = controller.Read(sensorPin2);
 
 
-            if (value == PinValue.Low)
+            if (value == PinValue.High)
             {
                 Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl unterbrochen!");
             }
