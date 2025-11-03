@@ -33,18 +33,10 @@ class Program
             {
                 Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl unterbrochen!");
             }
-            else
-            {
-                Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
-            }
 
-            if (value2 == PinValue.Low)
+            if (value2 == PinValue.High)
             {
                 Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl 2 unterbrochen!");
-            }
-            else
-            {
-                Console.WriteLine("✅  Kein Objekt – Lichtstrahl 2 frei.");
             }
 
             Thread.Sleep(500); // check twice per second
