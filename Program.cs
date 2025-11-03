@@ -16,7 +16,7 @@ class Program
 
         // Set pin mode to input (most light barriers have a digital output)
         controller.OpenPin(sensorPin, PinMode.InputPullUp);
-
+        controller.OpenPin(sensorPin2, PinMode.InputPullUp);
 
 
         Console.WriteLine("Lichtschranke gestartet – Ctrl+C zum Beenden.");
