@@ -15,7 +15,7 @@ class Program
 
 
         // Set pin mode to input (most light barriers have a digital output)
-        controller.OpenPin(sensorPin, PinMode.Input);
+        controller.OpenPin(sensorPin, PinMode.InputPullUp);
 
 
 
