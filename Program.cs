@@ -15,7 +15,7 @@ class Program
 
 
         // Set pin mode to input (most light barriers have a digital output)
-        controller.OpenPin(sensorPin, PinMode.InputPullUp);
+        controller.OpenPin(sensorPin, PinMode.Input);
 
 
 
@@ -29,7 +29,7 @@ class Program
             //PinValue value2 = controller.Read(sensorPin2);
 
 
-            if (value == PinValue.High)
+            if (value == PinValue.Low)
             {
                 Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl unterbrochen!");
             }
