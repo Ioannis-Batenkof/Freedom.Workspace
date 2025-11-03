@@ -9,7 +9,7 @@ class Program
     static void Main()
     {
         int sensorPin = 22; // GPIO17, change if needed
-        //int sensorPin2 = 24;
+        int sensorPin2 = 23;
         using var controller = new GpioController();
 
 
@@ -26,7 +26,7 @@ class Program
         while (true)
         {
             PinValue value = controller.Read(sensorPin);
-            //PinValue value2 = controller.Read(sensorPin2);
+            PinValue value2 = controller.Read(sensorPin2);
 
 
             if (value == PinValue.High)
@@ -35,17 +35,17 @@ class Program
             }
             else
             {
-                //Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
+                Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
             }
 
-            //if (value2 == PinValue.Low)
-            //{
-            //    Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl 2 unterbrochen!");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("✅  Kein Objekt – Lichtstrahl 2 frei.");
-            //}
+            if (value2 == PinValue.Low)
+            {
+                Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl 2 unterbrochen!");
+            }
+            else
+            {
+                Console.WriteLine("✅  Kein Objekt – Lichtstrahl 2 frei.");
+            }
 
             Thread.Sleep(500); // check twice per second
         }
