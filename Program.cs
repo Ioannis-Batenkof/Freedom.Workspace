@@ -1,33 +1,54 @@
 ﻿using System;
 using System.Device.Gpio;
-using System.Device.Gpio.Drivers;
 using System.Threading;
 
-namespace Freedom.Workspace
+
+
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main()
+        int sensorPin = 22; // GPIO17, change if needed
+        //int sensorPin2 = 24;
+        using var controller = new GpioController();
+
+
+
+        // Set pin mode to input (most light barriers have a digital output)
+        controller.OpenPin(sensorPin, PinMode.InputPullUp);
+
+
+
+        Console.WriteLine("Lichtschranke gestartet – Ctrl+C zum Beenden.");
+
+
+
+        while (true)
         {
-            int sensor1Pin = 22; // channel 1 output from 817 module
-            int sensor2Pin = 24; // channel 2 output from 817 module
+            PinValue value = controller.Read(sensorPin);
+            //PinValue value2 = controller.Read(sensorPin2);
 
-            using var controller = new GpioController(new LibGpiodDriver(4));
 
-            // Enable pull-ups
-            controller.OpenPin(sensor1Pin, PinMode.InputPullUp);
-            controller.OpenPin(sensor2Pin, PinMode.InputPullUp);
-
-            Console.WriteLine("Reading sensors... Press Ctrl+C to stop.");
-
-            while (true)
+            if (value == PinValue.Low)
             {
-                bool sensor1Active = controller.Read(sensor1Pin) == PinValue.Low; // LOW = active
-                bool sensor2Active = controller.Read(sensor2Pin) == PinValue.Low;
-
-                Console.WriteLine($"Sensor1: {sensor1Active}, Sensor2: {sensor2Active}");
-                Thread.Sleep(300);
+                Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl unterbrochen!");
             }
+            else
+            {
+                Console.WriteLine("✅  Kein Objekt – Lichtstrahl frei.");
+            }
+
+            //if (value2 == PinValue.Low)
+            //{
+            //    Console.WriteLine("➡️  Objekt erkannt – Lichtstrahl 2 unterbrochen!");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("✅  Kein Objekt – Lichtstrahl 2 frei.");
+            //}
+
+            Thread.Sleep(500); // check twice per second
         }
     }
 }
+
