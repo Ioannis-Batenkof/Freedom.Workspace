@@ -8,7 +8,7 @@ class Program
 {
     static void Main()
     {
-        int sensorPin = 24; // GPIO17, change if needed
+        int sensorPin = 22; // GPIO17, change if needed
         //int sensorPin2 = 24;
         using var controller = new GpioController();
 
